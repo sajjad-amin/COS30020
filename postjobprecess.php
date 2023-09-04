@@ -45,7 +45,7 @@ if(strlen($description) > 250){
 if($closing_date == ''){
     $err[] = 'Closing Date is required';
 }else{
-    $closing_date = date('d/m/y', strtotime($closing_date));
+    $closing_date = date('d/m/Y', strtotime($closing_date));
 }
 if(!preg_match('/^\d{1,2}\/\d{1,2}\/\d{2,4}$/', $closing_date)){
     $err[] = 'Closing Date must be dd/mm/yyyy or dd/mm/yy';

@@ -22,7 +22,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Cloasing Date</td>
+                        <td>Closing Date</td>
                         <td>
                             <input type="date" name="closing_date" placeholder="Closing Date" >
                         </td>

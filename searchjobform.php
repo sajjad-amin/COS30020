@@ -1,7 +1,7 @@
 <?php include 'inc/header.php'; ?>
     <div class="container">
         <section class="card">
-            <form class="job-post-form" action="searchjob.php" method="get">
+            <form class="job-post-form" action="searchjobprocess.php" method="get">
                 <table style="width: 100%">
                     <tr>
                         <td><strong>Job Title</strong></td>
