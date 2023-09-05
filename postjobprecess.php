@@ -1,6 +1,7 @@
 <?php
 include 'inc/header.php';
-
+include 'config.php';
+// the following variables are used to store the values from the job post form
 $position_id = isset($_POST['position_id']) ? strtoupper($_POST['position_id']) : '';
 $title = isset($_POST['title']) ? $_POST['title'] : '';
 $description = isset($_POST['description']) ? $_POST['description'] : '';
@@ -9,11 +10,12 @@ $position = isset($_POST['position']) ? $_POST['position'] : '';
 $contract = isset($_POST['contract']) ? $_POST['contract'] : '';
 $application_by = isset($_POST['application_by']) ? $_POST['application_by'] : [];
 $location = isset($_POST['location']) ? $_POST['location'] : '';
-
+// an empty array to store the errors
 $err = [];
-
-if(file_exists('jobposts/jobs.txt')){
-    $file = fopen('jobposts/jobs.txt', 'r');
+// check if the position id already exists
+// check duplicate position id
+if(file_exists($file_path)){
+    $file = fopen($file_path, 'r');
     while(!feof($file)){
         $line = fgets($file);
         $line = explode("\t", $line);
@@ -24,6 +26,7 @@ if(file_exists('jobposts/jobs.txt')){
     }
     fclose($file);
 }
+// validate the form data
 if($position_id == ''){
     $err[] = 'Position ID is required';
 }
@@ -64,10 +67,11 @@ if($location == '' || $location == '---'){
 }
 
 if (count($err) == 0){
-    if(!is_dir('jobposts')){
-        mkdir('jobposts');
+    // create the directory if it doesn't exist.
+    if(!is_dir($file_dir_path)){
+        mkdir($file_dir_path);
     }
-    $file = fopen('jobposts/jobs.txt', 'a');
+    $file = fopen($file_path, 'a');
     fwrite($file, "$position_id\t$title\t$description\t$closing_date\t$position\t$contract\t" . implode('|', $application_by) . "\t$location\n");
     fclose($file);
 }

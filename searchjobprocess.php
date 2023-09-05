@@ -1,12 +1,17 @@
 <?php
+include 'config.php';
+// getting the queries from the url and trim before usage so that it can't make any problem while searching
+// strtolower is used to make the search case insensitive
 $title = trim(strtolower($_GET['title']));
 $position = trim(strtolower($_GET['position']));
 $contract = trim(strtolower($_GET['contract']));
 $location = trim(strtolower($_GET['location']));
 $jobs = [];
 $err = [];
-if(file_exists('jobposts/jobs.txt')){
-    $file = fopen('jobposts/jobs.txt', 'r');
+// checking file exists or not and if exists then open the file
+// checking file will prevent the program from crashing if the file is not found
+if(file_exists($file_path)){
+    $file = fopen($file_path, 'r');
     if(empty($title)){
         $err[] = "Title is required.";
     }else{
