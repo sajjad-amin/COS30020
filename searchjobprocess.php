@@ -18,6 +18,10 @@ if(file_exists($file_path)){
         while(!feof($file)){
             $line = fgets($file);
             $job = explode("\t", $line);
+            // break if the line is empty
+            if(empty($job[0])){
+                break;
+            }
             $job_title = trim(strtolower($job[1]));
             $job_position = trim(strtolower($job[4]));
             $job_contract = trim(strtolower($job[5]));

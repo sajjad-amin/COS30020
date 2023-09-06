@@ -69,7 +69,7 @@ if($location == '' || $location == '---'){
 if (count($err) == 0){
     // create the directory if it doesn't exist.
     if(!is_dir($file_dir_path)){
-        mkdir($file_dir_path);
+        mkdir($file_dir_path, 0777, true);
     }
     $file = fopen($file_path, 'a');
     fwrite($file, "$position_id\t$title\t$description\t$closing_date\t$position\t$contract\t" . implode('|', $application_by) . "\t$location\n");
